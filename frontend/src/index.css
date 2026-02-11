@@ -1,74 +1,92 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Import Inter Font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 @layer base {
-  body {
-    @apply bg-gray-50 text-gray-900;
-  }
+body {
+@apply bg-slate-50 text-slate-900 antialiased selection:bg-blue-100 selection:text-blue-900;
+font-family: 'Inter';
+}
+
+/* Custom Scrollbar for modern look */
+::-webkit-scrollbar {
+width: 8px;
+}
+::-webkit-scrollbar-track {
+@apply bg-slate-50;
+}
+::-webkit-scrollbar-thumb {
+@apply bg-slate-200 rounded-full hover:bg-slate-300 transition-colors;
+}
 }
 
 @layer components {
-  .btn {
-    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
-  }
-
-  .btn-primary {
-    @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
-  }
-
-  .btn-secondary {
-    @apply bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-500;
-  }
-
-  .btn-danger {
-    @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
-  }
-
-  .input {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200;
-  }
-
-  .card {
-    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-6;
-  }
-
-  .label {
-    @apply block text-sm font-medium text-gray-700 mb-1;
-  }
+/* Premium Input Field */
+.input {
+@apply w-full bg-slate-50 border border-transparent rounded-2xl p-3.5
+outline-none transition-all duration-200 font-medium text-slate-800
+placeholder:text-slate-400 focus:border-blue-500 focus:bg-white
+focus:ring-4 focus:ring-blue-100 shadow-sm;
 }
 
-/* Custom animations */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Sophisticated Card Design */
+.card {
+@apply bg-white rounded-[2rem] border border-slate-100 p-8 shadow-xl shadow-slate-200/40;
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.3s ease-out;
+/* Form Labels */
+.label {
+@apply block text-sm font-bold text-slate-700 mb-1.5 ml-1;
 }
 
-/* Loading spinner */
-.spinner {
-  border: 3px solid #f3f3f3;
-  border-top: 3px solid #3b82f6;
-  border-radius: 50%;
-  width: 24px;
-  height: 24px;
-  animation: spin 1s linear infinite;
+/* Interactive Elements */
+.interactive-scale {
+@apply active:scale-[0.98] transition-transform duration-150;
+}
+}
+
+/* Custom Animations */
+@keyframes shake {
+0%, 100% { transform: translateX(0); }
+25% { transform: translateX(-4px); }
+75% { transform: translateX(4px); }
+}
+
+.animate-shake {
+animation: shake 0.2s ease-in-out 0s 2;
+}
+
+@keyframes fade-up {
+from {
+opacity: 0;
+transform: translateY(20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+
+.animate-fade-up {
+animation: fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Loading States */
+.spinner-premium {
+@apply border-2 border-slate-200 rounded-full;
+border-top-color: theme('colors.blue.600');
+animation: spin 0.8s cubic-bezier(0.55, 0, 0.1, 1) infinite;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+to { transform: rotate(360deg); }
+}
+
+/* Micro-interactions */
+.glass-effect {
+@apply bg-white/80 backdrop-blur-md border border-white/20;
 }
 
