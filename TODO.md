@@ -56,7 +56,7 @@ Build a complete full-stack application with React.js frontend, Node.js/Express 
 - [x] 7.2 Add API documentation (Postman collection)
 - [x] 7.3 Create scaling document for production
 - [x] 7.4 Add .env.example file
-- [ ] 7.5 Install dependencies and verify setup
+- [x] 7.5 Install dependencies and verify setup
 
 ---
 
