@@ -96,6 +96,22 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  // Delete user account
+  const deleteAccount = async () => {
+    setError(null);
+    try {
+      await authAPI.deleteAccount();
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      setUser(null);
+      return { success: true };
+    } catch (err) {
+      const message = err.response?.data?.message || 'Delete failed';
+      setError(message);
+      return { success: false, message };
+    }
+  };
+
   const value = {
     user,
     loading,
@@ -104,6 +120,7 @@ export const AuthProvider = ({ children }) => {
     signup,
     logout,
     updateProfile,
+    deleteAccount,
     isAuthenticated: !!user
   };
 
@@ -113,4 +130,3 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-

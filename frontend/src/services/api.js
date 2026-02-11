@@ -43,7 +43,9 @@ export const authAPI = {
   signup: (userData) => api.post('/auth/signup', userData),
   login: (credentials) => api.post('/auth/login', credentials),
   getMe: () => api.get('/auth/me'),
-  updateProfile: (userData) => api.put('/auth/updateprofile', userData)
+  updateProfile: (userData) => api.put('/auth/updateprofile', userData),
+  changePassword: (passwordData) => api.put('/auth/changepassword', passwordData),
+  deleteAccount: () => api.delete('/auth/deleteaccount')
 };
 
 // Task API calls

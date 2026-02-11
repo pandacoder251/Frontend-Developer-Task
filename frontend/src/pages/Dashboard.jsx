@@ -169,6 +169,12 @@ const Dashboard = () => {
               <div className="text-sm text-gray-600">
                 Welcome, <span className="font-medium">{user?.name}</span>
               </div>
+              <a
+                href="/profile"
+                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              >
+                Profile
+              </a>
               <Button variant="secondary" onClick={handleLogout}>
                 Logout
               </Button>
