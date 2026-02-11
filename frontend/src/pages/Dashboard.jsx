@@ -37,7 +37,12 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const response = await taskAPI.getAll(filters);
-      setTasks(response.data.data);
+      const result = response.data;
+      if (result.success) {
+        setTasks(result.data.data || []);
+      } else {
+        showToast('Failed to fetch tasks', 'error');
+      }
     } catch (error) {
       showToast('Failed to fetch tasks', 'error');
     } finally {

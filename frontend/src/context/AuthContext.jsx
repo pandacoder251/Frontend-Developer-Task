@@ -41,15 +41,22 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     try {
       const response = await authAPI.login({ email, password });
-      const { token, user: userData } = response.data;
+      const result = response.data;
+      
+      if (result.success) {
+        const { token, user: userData } = result.data;
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(userData));
+        setUser(userData);
 
-      return { success: true };
+        return { success: true };
+      } else {
+        setError(result.message || 'Login failed');
+        return { success: false, message: result.message };
+      }
     } catch (err) {
-      const message = err.response?.data?.message || 'Login failed';
+      const message = err.response?.data?.message || err.message || 'Login failed';
       setError(message);
       return { success: false, message };
     }
@@ -60,15 +67,22 @@ export const AuthProvider = ({ children }) => {
     setError(null);
     try {
       const response = await authAPI.signup({ name, email, password });
-      const { token, user: userData } = response.data;
+      const result = response.data;
+      
+      if (result.success) {
+        const { token, user: userData } = result.data;
 
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(userData));
-      setUser(userData);
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(userData));
+        setUser(userData);
 
-      return { success: true };
+        return { success: true };
+      } else {
+        setError(result.message || 'Signup failed');
+        return { success: false, message: result.message };
+      }
     } catch (err) {
-      const message = err.response?.data?.message || 'Signup failed';
+      const message = err.response?.data?.message || err.message || 'Signup failed';
       setError(message);
       return { success: false, message };
     }
